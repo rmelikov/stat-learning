@@ -1,0 +1,81 @@
+---
+title: "Exercises 01"
+author: "Ramin Melikov"
+date: "5/16/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r colleges}
+college = read.csv("../data/College.csv")
+attach(college)
+#fix(college)
+head(college)
+```
+
+```{r}
+summary(college)
+```
+
+```{r}
+pairs(college[,1:10])
+```
+
+```{r}
+plot(Private, Outstate)
+```
+
+```{r}
+Elite = rep("No", nrow(college))
+Elite[Top10perc>50] = "Yes"
+Elite = as.factor(Elite)
+college = data.frame(college, Elite)
+```
+
+```{r}
+summary(Elite)
+```
+
+```{r}
+plot(Elite, Outstate)
+```
+
+```{r}
+par(mfrow=c(2,2))
+hist(Apps)
+hist(perc.alumni, col=2)
+hist(S.F.Ratio, col=3, breaks=10)
+hist(Expend, breaks=100)
+```
+
+```{r}
+par(mfrow=c(2,1))
+plot(Outstate, Grad.Rate)
+# High tuition correlates to high graduation rate.
+plot(Accept / Apps, S.F.Ratio)
+# Colleges with low acceptance rate tend to have low S:F ratio.
+plot(Top10perc, Grad.Rate)
+```
+
+```{python engine.path="C:/Program Files/Python37/python.exe"}
+x = 2
+if x:
+  print(2)
+  
+```
+
+```
+
+```
+
